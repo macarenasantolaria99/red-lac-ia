@@ -226,7 +226,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 8rem 5% 3rem;
+            padding: 8rem 5% 5rem;
             position: relative;
             overflow: hidden;
         }
@@ -393,6 +393,145 @@
         }
 
         /* =========================
+           ORIGIN SECTION
+        ========================= */
+        .origin-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .origin-text h3 {
+            font-size: 1.8rem;
+            color: var(--color-orange);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .origin-text p {
+            line-height: 1.8;
+            color: var(--color-text-light);
+            margin-bottom: 1rem;
+        }
+
+        /* Highlighted quotes with interactive effects */
+        .highlight-quote {
+            display: inline;
+            background: linear-gradient(to bottom, transparent 0%, transparent 85%, rgba(217, 117, 53, 0.3) 85%, rgba(217, 117, 53, 0.3) 100%);
+            padding: 0.1rem 0.3rem;
+            font-weight: 600;
+            color: var(--color-text);
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .highlight-quote:hover {
+            background: linear-gradient(to bottom, transparent 0%, transparent 80%, rgba(217, 117, 53, 0.5) 80%, rgba(217, 117, 53, 0.5) 100%);
+            color: var(--color-orange);
+        }
+
+        /* Enhanced image frame with decorative elements */
+        .origin-image {
+            position: relative;
+            border-radius: 20px;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(217, 117, 53, 0.08) 0%, rgba(45, 90, 69, 0.08) 100%);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Decorative corner elements */
+        .origin-image::before,
+        .origin-image::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--color-orange);
+            transition: all 0.4s ease;
+        }
+
+        .origin-image::before {
+            top: 0;
+            left: 0;
+            border-right: none;
+            border-bottom: none;
+            border-top-left-radius: 20px;
+        }
+
+        .origin-image::after {
+            bottom: 0;
+            right: 0;
+            border-left: none;
+            border-top: none;
+            border-bottom-right-radius: 20px;
+        }
+
+        .origin-image:hover::before {
+            width: 60px;
+            height: 60px;
+        }
+
+        .origin-image:hover::after {
+            width: 60px;
+            height: 60px;
+        }
+
+        .origin-image:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(217, 117, 53, 0.2);
+            background: linear-gradient(135deg, rgba(217, 117, 53, 0.12) 0%, rgba(45, 90, 69, 0.12) 100%);
+        }
+
+        .origin-image-wrapper {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .origin-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            transition: transform 0.5s ease;
+        }
+
+        .origin-image:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Image caption */
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(45, 90, 69, 0.95), transparent);
+            color: white;
+            padding: 1.5rem 1rem 1rem;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .origin-image:hover .image-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 968px) {
+            .origin-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* =========================
            MEMBER GRID
         ========================= */
         .member-intro {
@@ -468,6 +607,59 @@
             font-size: 0.95rem;
             position: relative;
             z-index: 1;
+        }
+
+        /* =========================
+           AGENDA BOXES
+        ========================= */
+        .agenda-intro {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            color: var(--color-text-light);
+            max-width: 900px;
+        }
+
+        .agenda-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .agenda-box {
+            background: white;
+            border: 2px solid var(--color-cream-dark);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .agenda-box:hover {
+            transform: translateY(-8px);
+            border-color: var(--color-orange);
+            box-shadow: 0 15px 40px rgba(217, 117, 53, 0.15);
+        }
+
+        .agenda-box-date {
+            font-size: 0.85rem;
+            color: var(--color-orange);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .agenda-box h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--color-green);
+            font-weight: 600;
+        }
+
+        .agenda-box p {
+            color: var(--color-text-light);
+            line-height: 1.6;
         }
 
         /* =========================
@@ -781,14 +973,12 @@
                 <span class="word">Integral</span>
             </h1>
             <p class="hero-subtitle">
-                Articulando el conocimiento regional sobre IA para construir una voz latinoamericana experta y coherente 
-                que influya en el debate global y en las estrategias regionales con impacto significativo.
+                Articulamos el conocimiento regional sobre IA para construir una voz latinoamericana que oriente el desarrollo tecnológico hacia el desarrollo humano integral de la región.
             </p>
         </section>
 
         <!-- POR QUÉ UNA RED -->
         <section id="sobre" class="fade-in-section">
-            <h2>Por qué una Red</h2>
             <div class="feature-cards">
                 <div class="feature-card slide-in-left">
                     <div class="number">1</div>
@@ -799,17 +989,41 @@
                 </div>
                 <div class="feature-card fade-in-section">
                     <div class="number">2</div>
-                    <h3>Nuestra Misión</h3>
-                    <p>Generar espacios de encuentro y diálogo para el intercambio de perspectivas y conocimientos sobre IA. 
-                    Articular la masa crítica de investigación, centros y actores para construir y posicionar 
-                    una voz latinoamericana experta en IA.</p>
+                    <h3>Nuestra misión</h3>
+                    <p>Articular el conocimiento y los espacios de diálogo sobre IA en América Latina y el Caribe para construir una voz armónica y sonante.</p>
                 </div>
                 <div class="feature-card slide-in-right">
                     <div class="number">3</div>
-                    <h3>Agenda 2026</h3>
-                    <p>Nuestro primer año se enfoca en la construcción de alianzas estratégicas y coordinación entre instituciones 
-                    de América Latina y el Caribe. Dos ejes temáticos: Identidad Humana y Confianza en la IA 
-                    y el Futuro del Trabajo en la Era de la IA.</p>
+                    <h3>Cómo</h3>
+                    <p>La Red reúne a líderes regionales y expertos con experiencia reconocida en inteligencia artificial. 
+                    Incluye instituciones que trabajan en América Latina y el Caribe en investigación, desarrollo y despliegue 
+                    de soluciones de IA, y co-creación de marcos de gobernanza. Además, cuenta con miembros internacionales 
+                    que contribuyen a su alcance global y proyección internacional.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NUESTRO ORIGEN -->
+        <section class="fade-in-section">
+            <h2>Nuestro origen</h2>
+            <div class="origin-section">
+                <div class="origin-text">
+                    <h3>Lanzamiento en la Ciudad del Vaticano (Octubre 2025)</h3>
+                    <p>La Red Latinoamericana de IA para el Desarrollo Humano Integral fue lanzada en el contexto del seminario "Rerum Novarum Digital: una IA para la Paz, la Justicia Social y el Desarrollo Humano Integral", organizado conjuntamente por la Pontificia Academia de Ciencias Sociales y la Universidad de Notre Dame en octubre de 2025.</p>
+                    
+                    <p>El seminario puso especial énfasis en la posición del Sur Global —y América Latina y el Caribe en particular— dentro del panorama emergente de la IA global. Los participantes subrayaron que el desarrollo y gobernanza actual de la IA reflejan profundas asimetrías geopolíticas y económicas, con conocimiento, infraestructura computacional, datos e inversión concentrados en un pequeño número de países y corporaciones.</p>
+                    
+                    <p>Las discusiones destacaron una paradoja estructural: mientras la región muestra altos niveles de adopción e interés público en tecnologías de IA, captura solo una fracción marginal de la inversión privada global y continúa perdiendo talento altamente calificado. Sin acción regional coordinada, <span class="highlight-quote">América Latina corre el riesgo de permanecer como consumidora de soluciones tecnológicas externas en lugar de co-productora activa de las normas, infraestructuras y conocimientos que definirán el futuro de la IA.</span></p>
+                    
+                    <p>En este contexto, la creación de la Red Latinoamericana de IA surgió como una respuesta estratégica: una plataforma para <span class="highlight-quote">conectar experiencia dispersa, articular una voz regional polifónica y permitir que América Latina participe activamente en los debates y marcos de gobernanza globales sobre inteligencia artificial.</span></p>
+                </div>
+                <div class="origin-image">
+                    <div class="origin-image-wrapper">
+                        <img src="origen-vatican.jpg" alt="Lanzamiento de la Red LAC IA en el Vaticano - Octubre 2025">
+                        <div class="image-caption">
+                            Seminario "Rerum Novarum Digital" - Ciudad del Vaticano, Octubre 2025
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -912,33 +1126,24 @@
         <!-- AGENDA -->
         <section id="agenda" class="fade-in-section">
             <h2>Agenda 2026</h2>
-            <p class="member-intro">
-                La Red se enfocará en la construcción de alianzas estratégicas y coordinación, organizando encuentros virtuales 
-                y presenciales en América Latina e internacionalmente.
+            <p class="agenda-intro">
+                Durante 2026, la Red se enfocará en la construcción de alianzas estratégicas y coordinación entre instituciones, 
+                expertos y centros de investigación de América Latina y el Caribe que trabajan en IA desde una perspectiva 
+                centrada en el ser humano y orientada al desarrollo. En 2026 abordaremos de manera prioritaria los ejes temáticos 
+                de Identidad Humana, Confianza y Autenticidad en Sociedades Mediadas por IA y de Futuro del Trabajo en la Era 
+                de la Inteligencia Artificial.
             </p>
-            <div class="roadmap-grid">
-                <div class="roadmap-item">
-                    <div class="roadmap-date">Durante 2026</div>
-                    <h3>Eje Temático I: Identidad Humana, Confianza y Autenticidad</h3>
-                    <p>Reflexiones sobre el impacto de la IA en la identidad humana, la confianza social y la autenticidad 
-                    en entornos cada vez más digitales, con atención a representación, confiabilidad, 
-                    procesos deliberativos, contextos electorales y entornos infantiles.</p>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-date">Durante 2026</div>
-                    <h3>Eje Temático II: Futuro del Trabajo en la Era de la IA</h3>
-                    <p>Transformaciones en el trabajo asociadas con la IA, incluyendo cambios en la organización de tareas, 
-                    habilidades y empleo, e implicaciones para arreglos distributivos y mecanismos de 
-                    protección social para una transición justa.</p>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-date">Octubre 2026</div>
+
+            <h3 style="font-size: 1.8rem; color: var(--color-green); margin-top: 3rem; margin-bottom: 2rem;">Próximos encuentros</h3>
+            <div class="agenda-boxes">
+                <div class="agenda-box">
+                    <div class="agenda-box-date">Octubre 2026</div>
                     <h3>Encuentro Presencial en UMass Boston</h3>
                     <p>Primera gran reunión presencial organizada por la Universidad de Massachusetts Boston 
                     en colaboración con la Pontificia Academia de Ciencias Sociales.</p>
                 </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-date">Noviembre 2026</div>
+                <div class="agenda-box">
+                    <div class="agenda-box-date">Noviembre 2026</div>
                     <h3>Reunión en Buenos Aires</h3>
                     <p>Segundo encuentro presencial a realizarse en Buenos Aires, organizado por la 
                     Sociedad Argentina de Inteligencia Artificial.</p>
@@ -950,28 +1155,34 @@
         <section id="publicaciones" class="fade-in-section">
             <h2>Producción de Conocimiento</h2>
             <p class="member-intro">
-                La Red conecta y armoniza el trabajo existente de centros y expertos, 
-                construyendo una voz regional compartida para dar forma a debates globales e influir en estrategias.
+                La Red conecta y armoniza el trabajo existente de centros y expertos de América Latina. 
+                Investigación, pilotos y opiniones de nuestros miembros, aquí:
             </p>
             <div class="knowledge-grid">
                 <div class="knowledge-card">
-                    <div class="knowledge-tag">Documento de la Red</div>
-                    <h3>Perspectiva Latinoamericana sobre IA para el Bien Común</h3>
-                    <p>Basándose en la tradición regional de paz y diálogo, articulando 
-                    una perspectiva local que conecta soluciones regionales con agendas globales.</p>
+                    <div class="knowledge-tag">Casos de uso</div>
+                    <h3>Aplicaciones y Pilotos en la Región</h3>
+                    <p>Casos prácticos de implementación de IA desarrollados por instituciones miembro 
+                    en diversos contextos de América Latina y el Caribe.</p>
                 </div>
                 <div class="knowledge-card">
-                    <div class="knowledge-tag">Antecedentes</div>
-                    <h3>Rerum Novarum Digital: Lanzamiento en Ciudad del Vaticano</h3>
-                    <p>La Red fue lanzada en octubre de 2025 durante el seminario sobre 
-                    "IA para la Paz, la Justicia Social y el Desarrollo Humano Integral" 
-                    organizado por PASS y la Universidad de Notre Dame.</p>
-                </div>
-                <div class="knowledge-card">
-                    <div class="knowledge-tag">Producciones de Miembros</div>
+                    <div class="knowledge-tag">Investigación</div>
                     <h3>Investigación de Instituciones de la Red</h3>
-                    <p>Colección curada de publicaciones e iniciativas de instituciones miembro 
-                    trabajando en IA en América Latina y el Caribe.</p>
+                    <p>Colección curada de publicaciones e investigaciones producidas por las instituciones 
+                    miembro trabajando en IA en América Latina y el Caribe.</p>
+                </div>
+                <div class="knowledge-card">
+                    <div class="knowledge-tag">Material de la Red</div>
+                    <h3>Declaraciones y Documentos de la Red</h3>
+                    <p><strong>Declaración Final del Seminario "Rerum Novarum Digital: IA para la Paz, la Justicia Social y el Desarrollo Humano Integral"</strong><br>
+                    Ciudad del Vaticano, Octubre 2025</p>
+                    <a href="https://www.pass.va/en/events/2025/digital_rerum_novarum/final_statement.html" 
+                       target="_blank" 
+                       style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background: var(--color-orange); color: white; text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease;"
+                       onmouseover="this.style.background='var(--color-green)'; this.style.transform='translateY(-2px)'"
+                       onmouseout="this.style.background='var(--color-orange)'; this.style.transform='translateY(0)'">
+                        Leer declaración →
+                    </a>
                 </div>
             </div>
         </section>
