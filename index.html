@@ -184,8 +184,6 @@
             height: 45px;
             width: auto;
             transition: transform 0.3s ease;
-            mix-blend-mode: lighten;
-            filter: brightness(1.1);
         }
 
         .logo:hover {
@@ -293,8 +291,6 @@
             animation: fadeIn 1s ease-out 0.2s forwards;
             position: relative;
             z-index: 1;
-            mix-blend-mode: lighten;
-            filter: brightness(1.1);
         }
 
         .hero h1 {
@@ -525,11 +521,13 @@
             height: auto;
             display: block;
             border-radius: 12px;
-            transition: transform 0.5s ease;
+            transition: all 0.5s ease;
+            filter: grayscale(100%);
         }
 
         .origin-image:hover img {
             transform: scale(1.03);
+            filter: grayscale(0%);
         }
 
         /* Image caption */
@@ -635,6 +633,59 @@
             font-size: 0.95rem;
             position: relative;
             z-index: 1;
+        }
+
+        /* Member logos */
+        .member-card a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: inherit;
+            min-height: 100px;
+        }
+
+        .member-card img.member-logo {
+            max-width: 140px;
+            max-height: 70px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            margin-bottom: 0.8rem;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .member-card:hover img.member-logo {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Event tags */
+        .event-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .event-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--color-orange);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 20px;
+        }
+
+        .event-tag.secondary {
+            background: var(--color-green);
         }
 
         /* =========================
@@ -975,7 +1026,6 @@
     <header>
         <div class="header-content">
             <div class="logo">
-                <img src="logo-red-lac.png" alt="Red LAC IA Logo">
                 <span>Red LAC IA</span>
             </div>
             <nav>
@@ -991,7 +1041,6 @@
     <main>
         <!-- HERO -->
         <section class="hero">
-            <img src="logo-red-lac.png" alt="Red LAC IA" class="hero-logo">
             <div class="vatican-tag">Bajo los auspicios de la Pontificia Academia de Ciencias Sociales</div>
             <h1>
                 <span class="word">Red</span> 
@@ -1027,10 +1076,9 @@
                 <div class="feature-card slide-in-right">
                     <div class="number">3</div>
                     <h3>Cómo</h3>
-                    <p>La Red reúne a líderes regionales y expertos con experiencia reconocida en inteligencia artificial. 
-                    Incluye instituciones que trabajan en América Latina y el Caribe en investigación, desarrollo y despliegue 
-                    de soluciones de IA, y co-creación de marcos de gobernanza. Además, cuenta con miembros internacionales 
-                    que contribuyen a su alcance global y proyección internacional.</p>
+                    <p>La Red reúne a instituciones que trabajan en América Latina y el Caribe en investigación, 
+                    desarrollo y despliegue de soluciones de IA y cuenta con miembros internacionales que contribuyen 
+                    a su alcance global y proyección internacional.</p>
                 </div>
             </div>
         </section>
@@ -1040,7 +1088,6 @@
             <h2>Nuestro origen</h2>
             <div class="origin-section">
                 <div class="origin-text">
-                    <h3>Lanzamiento en la Ciudad del Vaticano (Octubre 2025)</h3>
                     <p>La Red Latinoamericana de IA para el Desarrollo Humano Integral fue lanzada en el contexto del seminario "Rerum Novarum Digital: una IA para la Paz, la Justicia Social y el Desarrollo Humano Integral", organizado conjuntamente por la Pontificia Academia de Ciencias Sociales y la Universidad de Notre Dame en octubre de 2025.</p>
                     
                     <p>El seminario puso especial énfasis en la posición del Sur Global —y América Latina y el Caribe en particular— dentro del panorama emergente de la IA global. Los participantes subrayaron que el desarrollo y gobernanza actual de la IA reflejan profundas asimetrías geopolíticas y económicas, con conocimiento, infraestructura computacional, datos e inversión concentrados en un pequeño número de países y corporaciones.</p>
@@ -1073,8 +1120,11 @@
                     <p>Universidad de Buenos Aires</p>
                 </div>
                 <div class="member-card">
-                    <h3>Fundar</h3>
-                    <p>Argentina</p>
+                    <a href="https://fund.ar" target="_blank">
+                        <img src="fundar-logo.png" alt="Fundar" class="member-logo">
+                        <h3>Fundar</h3>
+                        <p>Argentina</p>
+                    </a>
                 </div>
                 <div class="member-card">
                     <h3>CENIA</h3>
@@ -1169,16 +1219,70 @@
             <h3 style="font-size: 1.8rem; color: var(--color-green); margin-top: 3rem; margin-bottom: 2rem;">Próximos encuentros</h3>
             <div class="agenda-boxes">
                 <div class="agenda-box">
-                    <div class="agenda-box-date">Octubre 2026</div>
+                    <div class="event-tags">
+                        <span class="event-tag">RED LAC IA</span>
+                        <span class="event-tag secondary">Octubre 2026</span>
+                        <span class="event-tag secondary">Estados Unidos</span>
+                    </div>
                     <h3>Encuentro Presencial en UMass Boston</h3>
                     <p>Primera gran reunión presencial organizada por la Universidad de Massachusetts Boston 
                     en colaboración con la Pontificia Academia de Ciencias Sociales.</p>
                 </div>
                 <div class="agenda-box">
-                    <div class="agenda-box-date">Noviembre 2026</div>
+                    <div class="event-tags">
+                        <span class="event-tag">RED LAC IA</span>
+                        <span class="event-tag secondary">Noviembre 2026</span>
+                        <span class="event-tag secondary">Argentina</span>
+                    </div>
                     <h3>Reunión en Buenos Aires</h3>
                     <p>Segundo encuentro presencial a realizarse en Buenos Aires, organizado por la 
                     Sociedad Argentina de Inteligencia Artificial.</p>
+                </div>
+                <div class="agenda-box">
+                    <div class="event-tags">
+                        <span class="event-tag">RED LAC IA</span>
+                        <span class="event-tag secondary">TBC</span>
+                        <span class="event-tag secondary">Argentina</span>
+                    </div>
+                    <h3>Buenos Aires International Book Fair</h3>
+                    <p>Participación de la Red LAC IA en la Feria Internacional del Libro de Buenos Aires.</p>
+                </div>
+                <div class="agenda-box">
+                    <div class="event-tags">
+                        <span class="event-tag">RED LAC IA</span>
+                        <span class="event-tag">CTS-FGV</span>
+                        <span class="event-tag secondary">TBC</span>
+                        <span class="event-tag secondary">Brasil</span>
+                    </div>
+                    <h3>Fundação Getulio Vargas (FGV)</h3>
+                    <p>Evento conjunto con el Centro de Tecnología y Sociedad de la Fundação Getulio Vargas.</p>
+                </div>
+                <div class="agenda-box">
+                    <div class="event-tags">
+                        <span class="event-tag">ITU</span>
+                        <span class="event-tag secondary">TBC</span>
+                        <span class="event-tag secondary">Suiza</span>
+                    </div>
+                    <h3>International Telecommunication Union (ITU)</h3>
+                    <p>Participación en evento organizado por la Unión Internacional de Telecomunicaciones.</p>
+                </div>
+                <div class="agenda-box">
+                    <div class="event-tags">
+                        <span class="event-tag">RED LAC IA</span>
+                        <span class="event-tag">SEGIB</span>
+                        <span class="event-tag secondary">TBC</span>
+                        <span class="event-tag secondary">España</span>
+                    </div>
+                    <h3>SEGIB</h3>
+                    <p>Colaboración con la Secretaría General Iberoamericana.</p>
+                </div>
+                <div class="agenda-box">
+                    <div class="event-tags">
+                        <span class="event-tag secondary">TBC</span>
+                        <span class="event-tag secondary">Italia</span>
+                    </div>
+                    <h3>Berggruen Institute</h3>
+                    <p>Evento conjunto con el Instituto Berggruen en Italia.</p>
                 </div>
             </div>
         </section>
