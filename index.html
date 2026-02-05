@@ -1,1 +1,1124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Latinoamericana de IA para el Desarrollo Humano Integral</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-cream: #f5f1e8;
+            --color-cream-dark: #ebe5d8;
+            --color-orange: #d97535;
+            --color-orange-light: #e89556;
+            --color-green: #2d5a45;
+            --color-green-light: #3d7a5e;
+            --color-text: #2c2c2c;
+            --color-text-light: #5a5a5a;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-cream);
+            color: var(--color-text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           ANIMACIONES KEYFRAMES
+        ========================= */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 0.2;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 0.4;
+                transform: scale(1.08);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* =========================
+           CLASES PARA SCROLL ANIMATIONS
+        ========================= */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-80px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .slide-in-left.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(80px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .slide-in-right.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            background: rgba(245, 241, 232, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(45, 90, 69, 0.15);
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        header.scrolled {
+            background: rgba(245, 241, 232, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 0.8rem 5%;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'IBM Plex Serif', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: var(--color-green);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.3rem 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-orange), var(--color-orange-light));
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav a:hover {
+            color: var(--color-orange);
+            transform: translateY(-2px);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 5% 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(217, 117, 53, 0.08) 0%, transparent 70%);
+            animation: pulse 10s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(45, 90, 69, 0.06) 0%, transparent 60%);
+            animation: float 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .vatican-tag {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-orange);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.3s forwards;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'IBM Plex Serif', serif;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -2px;
+            max-width: 1100px;
+            position: relative;
+            z-index: 1;
+            color: var(--color-green);
+        }
+
+        /* Typing effect */
+        .hero h1 .word {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .hero h1 .word:nth-child(1) { animation-delay: 0.1s; }
+        .hero h1 .word:nth-child(2) { animation-delay: 0.2s; }
+        .hero h1 .word:nth-child(3) { animation-delay: 0.3s; }
+        .hero h1 .word:nth-child(4) { animation-delay: 0.4s; }
+        .hero h1 .word:nth-child(5) { animation-delay: 0.5s; }
+        .hero h1 .word:nth-child(6) { animation-delay: 0.6s; }
+        .hero h1 .word:nth-child(7) { animation-delay: 0.7s; }
+        .hero h1 .word:nth-child(8) { animation-delay: 0.8s; }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            max-width: 900px;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+            color: var(--color-text);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+        section {
+            padding: 4rem 5%;
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-family: 'IBM Plex Serif', serif;
+            font-size: clamp(2rem, 5vw, 3.8rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            color: var(--color-green);
+        }
+
+        /* =========================
+           FEATURE CARDS
+        ========================= */
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border: 2px solid var(--color-cream-dark);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Shimmer effect */
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(217, 117, 53, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--color-orange);
+            box-shadow: 0 20px 50px rgba(217, 117, 53, 0.15);
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--color-orange);
+            font-weight: 600;
+        }
+
+        .feature-card .number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: rgba(217, 117, 53, 0.2);
+            margin-bottom: 1rem;
+            font-family: 'IBM Plex Serif', serif;
+        }
+
+        .feature-card p {
+            line-height: 1.8;
+            color: var(--color-text-light);
+            font-size: 1.05rem;
+        }
+
+        /* =========================
+           MEMBER GRID
+        ========================= */
+        .member-intro {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            color: var(--color-text-light);
+            max-width: 900px;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .member-card {
+            background: white;
+            border: 2px solid var(--color-cream-dark);
+            border-radius: 18px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-card.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Glow effect */
+        .member-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(217, 117, 53, 0.15) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            pointer-events: none;
+        }
+
+        .member-card:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .member-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            border-color: var(--color-orange);
+            box-shadow: 0 20px 50px rgba(217, 117, 53, 0.2);
+        }
+
+        .member-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+            color: var(--color-green);
+        }
+
+        .member-card p {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* =========================
+           ROADMAP
+        ========================= */
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 2.5rem;
+        }
+
+        .roadmap-item {
+            background: white;
+            border: 2px solid var(--color-cream-dark);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(180deg, var(--color-orange), var(--color-orange-light));
+            border-radius: 2px;
+            transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .roadmap-item:hover::before {
+            height: 100%;
+        }
+
+        .roadmap-item:hover {
+            transform: translateX(8px);
+            border-color: var(--color-orange);
+            box-shadow: 0 15px 40px rgba(217, 117, 53, 0.15);
+        }
+
+        .roadmap-date {
+            font-size: 0.9rem;
+            color: var(--color-orange);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .roadmap-item h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--color-green);
+        }
+
+        .roadmap-item p {
+            color: var(--color-text-light);
+            line-height: 1.7;
+        }
+
+        /* =========================
+           KNOWLEDGE CARDS
+        ========================= */
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .knowledge-card {
+            background: white;
+            border: 2px solid var(--color-cream-dark);
+            border-radius: 18px;
+            padding: 3rem 2.5rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .knowledge-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--color-orange);
+            box-shadow: 0 15px 45px rgba(217, 117, 53, 0.15);
+        }
+
+        .knowledge-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(217, 117, 53, 0.1);
+            border: 1px solid rgba(217, 117, 53, 0.3);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+            color: var(--color-orange);
+        }
+
+        .knowledge-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            color: var(--color-green);
+        }
+
+        .knowledge-card p {
+            color: var(--color-text-light);
+            line-height: 1.7;
+        }
+
+        /* =========================
+           CTA SECTION
+        ========================= */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(217, 117, 53, 0.12) 0%, rgba(45, 90, 69, 0.12) 100%);
+            border: 2px solid rgba(217, 117, 53, 0.3);
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            text-align: center;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(217, 117, 53, 0.08) 0%, transparent 60%);
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .cta-section h2 {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+            margin-top: 2.5rem;
+        }
+
+        .cta-button {
+            padding: 1.2rem 3rem;
+            background: var(--color-green);
+            border: 2px solid var(--color-green);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ripple effect */
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--color-orange);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 500px;
+            height: 500px;
+        }
+
+        .cta-button:hover {
+            border-color: var(--color-orange);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(217, 117, 53, 0.3);
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+        footer {
+            background: var(--color-green);
+            color: white;
+            padding: 4rem 5%;
+            border-top: 3px solid var(--color-orange);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            color: var(--color-orange);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-orange);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.7;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+        @media (max-width: 968px) {
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            .feature-cards,
+            .members-grid,
+            .roadmap-grid,
+            .knowledge-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">Red LAC IA</div>
+            <nav>
+                <a href="#sobre">Sobre la Red</a>
+                <a href="#miembros">Miembros</a>
+                <a href="#agenda">Agenda 2026</a>
+                <a href="#publicaciones">Conocimiento</a>
+                <a href="#participar">Participar</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="vatican-tag">Bajo los auspicios de la Pontificia Academia de Ciencias Sociales</div>
+            <h1>
+                <span class="word">Red</span> 
+                <span class="word">Latinoamericana</span> 
+                <span class="word">de</span> 
+                <span class="word">IA</span> 
+                <span class="word">para</span> 
+                <span class="word">el</span> 
+                <span class="word">Desarrollo</span> 
+                <span class="word">Humano</span>
+                <span class="word">Integral</span>
+            </h1>
+            <p class="hero-subtitle">
+                Articulando el conocimiento regional sobre IA para construir una voz latinoamericana experta y coherente 
+                que influya en el debate global y en las estrategias regionales con impacto significativo.
+            </p>
+        </section>
+
+        <!-- POR QUÉ UNA RED -->
+        <section id="sobre" class="fade-in-section">
+            <h2>Por qué una Red</h2>
+            <div class="feature-cards">
+                <div class="feature-card slide-in-left">
+                    <div class="number">1</div>
+                    <h3>Por qué una Red</h3>
+                    <p>La IA está redefiniendo rápidamente la economía global, el trabajo y la sociedad. Sin un espacio de coordinación, 
+                    América Latina corre el riesgo de fragmentar esfuerzos y perder el vasto potencial de la IA para el desarrollo regional. 
+                    La región debe ofrecer una perspectiva local al debate global sobre IA para el bien común.</p>
+                </div>
+                <div class="feature-card fade-in-section">
+                    <div class="number">2</div>
+                    <h3>Nuestra Misión</h3>
+                    <p>Generar espacios de encuentro y diálogo para el intercambio de perspectivas y conocimientos sobre IA. 
+                    Articular la masa crítica de investigación, centros y actores para construir y posicionar 
+                    una voz latinoamericana experta en IA.</p>
+                </div>
+                <div class="feature-card slide-in-right">
+                    <div class="number">3</div>
+                    <h3>Agenda 2026</h3>
+                    <p>Nuestro primer año se enfoca en la construcción de alianzas estratégicas y coordinación entre instituciones 
+                    de América Latina y el Caribe. Dos ejes temáticos: Identidad Humana y Confianza en la IA 
+                    y el Futuro del Trabajo en la Era de la IA.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MIEMBROS -->
+        <section id="miembros" class="fade-in-section">
+            <h2>Instituciones Miembro</h2>
+            <p class="member-intro">
+                La Red reúne a líderes regionales y expertos con experiencia reconocida en inteligencia artificial, 
+                representando instituciones que trabajan en investigación, gobernanza y despliegue de IA en América Latina y el Caribe.
+            </p>
+            <div class="members-grid">
+                <div class="member-card">
+                    <h3>IALAB</h3>
+                    <p>Universidad de Buenos Aires</p>
+                </div>
+                <div class="member-card">
+                    <h3>Fundar</h3>
+                    <p>Argentina</p>
+                </div>
+                <div class="member-card">
+                    <h3>CENIA</h3>
+                    <p>Chile</p>
+                </div>
+                <div class="member-card">
+                    <h3>Fundación Alana</h3>
+                    <p>Brasil</p>
+                </div>
+                <div class="member-card">
+                    <h3>FGV CTS</h3>
+                    <p>Brasil</p>
+                </div>
+                <div class="member-card">
+                    <h3>ICMC-USP</h3>
+                    <p>Brasil</p>
+                </div>
+                <div class="member-card">
+                    <h3>CELAM</h3>
+                    <p>LAC</p>
+                </div>
+                <div class="member-card">
+                    <h3>CAF</h3>
+                    <p>Banco de Desarrollo</p>
+                </div>
+                <div class="member-card">
+                    <h3>PNUD</h3>
+                    <p>LAC</p>
+                </div>
+                <div class="member-card">
+                    <h3>UMass Boston</h3>
+                    <p>Estados Unidos</p>
+                </div>
+                <div class="member-card">
+                    <h3>UCLA</h3>
+                    <p>Estados Unidos</p>
+                </div>
+                <div class="member-card">
+                    <h3>Universidad de Columbia</h3>
+                    <p>Estados Unidos</p>
+                </div>
+                <div class="member-card">
+                    <h3>Northeastern</h3>
+                    <p>Civic AI Lab</p>
+                </div>
+                <div class="member-card">
+                    <h3>Notre Dame</h3>
+                    <p>Estados Unidos</p>
+                </div>
+                <div class="member-card">
+                    <h3>Globernance</h3>
+                    <p>España</p>
+                </div>
+                <div class="member-card">
+                    <h3>CLAIRE</h3>
+                    <p>Europa</p>
+                </div>
+                <div class="member-card">
+                    <h3>EUI</h3>
+                    <p>Cátedra IA y Democracia</p>
+                </div>
+                <div class="member-card">
+                    <h3>Partnership on AI</h3>
+                    <p>Internacional</p>
+                </div>
+                <div class="member-card">
+                    <h3>PASS</h3>
+                    <p>Vaticano</p>
+                </div>
+                <div class="member-card">
+                    <h3>Instituto Berggruen</h3>
+                    <p>Internacional</p>
+                </div>
+                <div class="member-card">
+                    <h3>Fundación NeuroRights</h3>
+                    <p>Internacional</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AGENDA -->
+        <section id="agenda" class="fade-in-section">
+            <h2>Agenda 2026</h2>
+            <p class="member-intro">
+                La Red se enfocará en la construcción de alianzas estratégicas y coordinación, organizando encuentros virtuales 
+                y presenciales en América Latina e internacionalmente.
+            </p>
+            <div class="roadmap-grid">
+                <div class="roadmap-item">
+                    <div class="roadmap-date">Durante 2026</div>
+                    <h3>Eje Temático I: Identidad Humana, Confianza y Autenticidad</h3>
+                    <p>Reflexiones sobre el impacto de la IA en la identidad humana, la confianza social y la autenticidad 
+                    en entornos cada vez más digitales, con atención a representación, confiabilidad, 
+                    procesos deliberativos, contextos electorales y entornos infantiles.</p>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-date">Durante 2026</div>
+                    <h3>Eje Temático II: Futuro del Trabajo en la Era de la IA</h3>
+                    <p>Transformaciones en el trabajo asociadas con la IA, incluyendo cambios en la organización de tareas, 
+                    habilidades y empleo, e implicaciones para arreglos distributivos y mecanismos de 
+                    protección social para una transición justa.</p>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-date">Octubre 2026</div>
+                    <h3>Encuentro Presencial en UMass Boston</h3>
+                    <p>Primera gran reunión presencial organizada por la Universidad de Massachusetts Boston 
+                    en colaboración con la Pontificia Academia de Ciencias Sociales.</p>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-date">Noviembre 2026</div>
+                    <h3>Reunión en Buenos Aires</h3>
+                    <p>Segundo encuentro presencial a realizarse en Buenos Aires, organizado por la 
+                    Sociedad Argentina de Inteligencia Artificial.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONOCIMIENTO -->
+        <section id="publicaciones" class="fade-in-section">
+            <h2>Producción de Conocimiento</h2>
+            <p class="member-intro">
+                La Red conecta y armoniza el trabajo existente de centros y expertos, 
+                construyendo una voz regional compartida para dar forma a debates globales e influir en estrategias.
+            </p>
+            <div class="knowledge-grid">
+                <div class="knowledge-card">
+                    <div class="knowledge-tag">Documento de la Red</div>
+                    <h3>Perspectiva Latinoamericana sobre IA para el Bien Común</h3>
+                    <p>Basándose en la tradición regional de paz y diálogo, articulando 
+                    una perspectiva local que conecta soluciones regionales con agendas globales.</p>
+                </div>
+                <div class="knowledge-card">
+                    <div class="knowledge-tag">Antecedentes</div>
+                    <h3>Rerum Novarum Digital: Lanzamiento en Ciudad del Vaticano</h3>
+                    <p>La Red fue lanzada en octubre de 2025 durante el seminario sobre 
+                    "IA para la Paz, la Justicia Social y el Desarrollo Humano Integral" 
+                    organizado por PASS y la Universidad de Notre Dame.</p>
+                </div>
+                <div class="knowledge-card">
+                    <div class="knowledge-tag">Producciones de Miembros</div>
+                    <h3>Investigación de Instituciones de la Red</h3>
+                    <p>Colección curada de publicaciones e iniciativas de instituciones miembro 
+                    trabajando en IA en América Latina y el Caribe.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section id="participar" class="fade-in-section">
+            <div class="cta-section">
+                <h2>Únete a la Red</h2>
+                <p style="font-size: 1.2rem; color: var(--color-text-light); margin-top: 1rem;">
+                    Estamos construyendo la comunidad de IA más importante para el desarrollo humano integral 
+                    en América Latina y el Caribe. Tu institución o experiencia puede ser parte de este movimiento.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#" class="cta-button"><span>Aplicar como Institución</span></a>
+                    <a href="#" class="cta-button"><span>Contáctanos</span></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Red LAC IA</h4>
+                <p>Red Latinoamericana de IA para el Desarrollo Humano Integral</p>
+                <p>Bajo los auspicios de la Pontificia Academia de Ciencias Sociales</p>
+            </div>
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <a href="#sobre">Sobre la Red</a>
+                <a href="#miembros">Miembros</a>
+                <a href="#agenda">Agenda 2026</a>
+                <a href="#publicaciones">Conocimiento</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <a href="mailto:contacto@redlacia.org">contacto@redlacia.org</a>
+                <a href="#participar">Únete a la Red</a>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Newsletter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Red Latinoamericana de IA para el Desarrollo Humano Integral. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ===========================
+        // INTERSECTION OBSERVER
+        // ===========================
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    
+                    // Stagger para member cards
+                    if (entry.target.classList.contains('members-grid')) {
+                        const cards = entry.target.querySelectorAll('.member-card');
+                        cards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('is-visible');
+                            }, index * 40);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observar secciones
+        document.querySelectorAll('.fade-in-section, .slide-in-left, .slide-in-right').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Observar grid de miembros
+        const membersGrid = document.querySelector('.members-grid');
+        if (membersGrid) {
+            observer.observe(membersGrid);
+        }
+
+        // ===========================
+        // PARALLAX HERO
+        // ===========================
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.4}px)`;
+                hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.6;
+            }
+        });
+
+        // ===========================
+        // HEADER SCROLL
+        // ===========================
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 80) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ===========================
+        // SMOOTH SCROLL
+        // ===========================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ===========================
+        // PARALLAX EN CARDS
+        // ===========================
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.feature-card');
+            cards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                const scrollPercent = (window.innerHeight - rect.top) / window.innerHeight;
+                
+                if (scrollPercent > 0 && scrollPercent < 1) {
+                    const translateY = (scrollPercent - 0.5) * 20;
+                    card.style.transform = `translateY(${translateY}px)`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
