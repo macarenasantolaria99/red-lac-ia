@@ -514,6 +514,12 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            opacity: 0.3;
+            transition: opacity 0.6s ease;
+        }
+
+        .origin-image-wrapper.is-visible {
+            opacity: 1;
         }
 
         .origin-image img {
@@ -521,13 +527,11 @@
             height: auto;
             display: block;
             border-radius: 12px;
-            transition: all 0.5s ease;
-            filter: grayscale(100%);
+            transition: transform 0.5s ease;
         }
 
         .origin-image:hover img {
             transform: scale(1.03);
-            filter: grayscale(0%);
         }
 
         /* Image caption */
@@ -646,22 +650,48 @@
             min-height: 100px;
         }
 
+        .member-card.has-logo {
+            background: transparent;
+            border: none;
+            padding: 1rem;
+        }
+
+        .member-card.has-logo:hover {
+            transform: translateY(-8px);
+            border: none;
+            box-shadow: none;
+        }
+
+        .member-card.has-logo::after {
+            display: none;
+        }
+
         .member-card img.member-logo {
-            max-width: 140px;
-            max-height: 70px;
+            max-width: 180px;
+            max-height: 80px;
             width: auto;
             height: auto;
             object-fit: contain;
             margin-bottom: 0.8rem;
-            filter: grayscale(100%);
-            opacity: 0.7;
+            filter: grayscale(0%);
+            opacity: 1;
             transition: all 0.3s ease;
+            filter: drop-shadow(0 4px 12px rgba(217, 117, 53, 0.15));
         }
 
         .member-card:hover img.member-logo {
-            filter: grayscale(0%);
-            opacity: 1;
-            transform: scale(1.05);
+            transform: translateY(-4px);
+            filter: drop-shadow(0 8px 20px rgba(217, 117, 53, 0.3));
+        }
+
+        .member-card.has-logo h3 {
+            font-size: 1rem;
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        .member-card.has-logo p {
+            font-size: 0.85rem;
         }
 
         /* Event tags */
@@ -1031,7 +1061,7 @@
             <nav>
                 <a href="#sobre">Sobre la Red</a>
                 <a href="#miembros">Miembros</a>
-                <a href="#agenda">Agenda 2026</a>
+                <a href="#agenda">Encuentros</a>
                 <a href="#publicaciones">Conocimiento</a>
                 <a href="#participar">Participar</a>
             </nav>
@@ -1119,11 +1149,10 @@
                     <h3>IALAB</h3>
                     <p>Universidad de Buenos Aires</p>
                 </div>
-                <div class="member-card">
+                <div class="member-card has-logo">
                     <a href="https://fund.ar" target="_blank">
                         <img src="fundar-logo.png" alt="Fundar" class="member-logo">
-                        <h3>Fundar</h3>
-                        <p>Argentina</p>
+                        <h3>Fundar (Argentina)</h3>
                     </a>
                 </div>
                 <div class="member-card">
@@ -1207,7 +1236,7 @@
 
         <!-- AGENDA -->
         <section id="agenda" class="fade-in-section">
-            <h2>Agenda 2026</h2>
+            <h2><a href="encuentros.html" style="color: inherit; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='var(--color-orange)'" onmouseout="this.style.color='var(--color-green)'">Encuentros →</a></h2>
             <p class="agenda-intro">
                 Durante 2026, la Red se enfocará en la construcción de alianzas estratégicas y coordinación entre instituciones, 
                 expertos y centros de investigación de América Latina y el Caribe que trabajan en IA desde una perspectiva 
@@ -1216,7 +1245,7 @@
                 de la Inteligencia Artificial.
             </p>
 
-            <h3 style="font-size: 1.8rem; color: var(--color-green); margin-top: 3rem; margin-bottom: 2rem;">Próximos encuentros</h3>
+            <h3 style="font-size: 1.8rem; color: var(--color-green); margin-top: 3rem; margin-bottom: 2rem;">Próximos</h3>
             <div class="agenda-boxes">
                 <div class="agenda-box">
                     <div class="event-tags">
@@ -1285,11 +1314,32 @@
                     <p>Evento conjunto con el Instituto Berggruen en Italia.</p>
                 </div>
             </div>
+
+            <h3 style="font-size: 1.8rem; color: var(--color-green); margin-top: 4rem; margin-bottom: 2rem;">Pasados</h3>
+            <div class="agenda-boxes">
+                <div class="agenda-box">
+                    <div class="event-tags">
+                        <span class="event-tag">RED LAC IA</span>
+                        <span class="event-tag secondary">Octubre 2025</span>
+                        <span class="event-tag secondary">Vaticano</span>
+                    </div>
+                    <h3>Rerum Novarum Digital: IA para la Paz, la Justicia Social y el Desarrollo Humano Integral</h3>
+                    <p>Seminario de lanzamiento de la Red LAC IA, organizado por la Pontificia Academia de Ciencias Sociales 
+                    y la Universidad de Notre Dame en la Ciudad del Vaticano.</p>
+                    <a href="https://www.pass.va/en/events/2025/digital_rerum_novarum.html" 
+                       target="_blank" 
+                       style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background: var(--color-orange); color: white; text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease;"
+                       onmouseover="this.style.background='var(--color-green)'; this.style.transform='translateY(-2px)'"
+                       onmouseout="this.style.background='var(--color-orange)'; this.style.transform='translateY(0)'">
+                        Ver evento →
+                    </a>
+                </div>
+            </div>
         </section>
 
         <!-- CONOCIMIENTO -->
         <section id="publicaciones" class="fade-in-section">
-            <h2>Producción de Conocimiento</h2>
+            <h2><a href="conocimiento.html" style="color: inherit; text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='var(--color-orange)'" onmouseout="this.style.color='var(--color-green)'">Conocimiento →</a></h2>
             <p class="member-intro">
                 La Red conecta y armoniza el trabajo existente de centros y expertos de América Latina. 
                 Investigación, pilotos y opiniones de nuestros miembros, aquí:
@@ -1328,8 +1378,8 @@
             <div class="cta-section">
                 <h2>Únete a la Red</h2>
                 <p style="font-size: 1.2rem; color: var(--color-text-light); margin-top: 1rem;">
-                    Estamos construyendo la comunidad de IA más importante para el desarrollo humano integral 
-                    en América Latina y el Caribe. Tu institución o experiencia puede ser parte de este movimiento.
+                    Queremos llegar a todos los centros que están orientando la IA hacia el desarrollo humano integral 
+                    de América Latina y el Caribe.
                 </p>
                 <div class="cta-buttons">
                     <a href="#" class="cta-button"><span>Aplicar como Institución</span></a>
@@ -1350,19 +1400,13 @@
                 <h4>Navegación</h4>
                 <a href="#sobre">Sobre la Red</a>
                 <a href="#miembros">Miembros</a>
-                <a href="#agenda">Agenda 2026</a>
+                <a href="#agenda">Encuentros</a>
                 <a href="#publicaciones">Conocimiento</a>
             </div>
             <div class="footer-section">
                 <h4>Contacto</h4>
                 <a href="mailto:contacto@redlacia.org">contacto@redlacia.org</a>
                 <a href="#participar">Únete a la Red</a>
-            </div>
-            <div class="footer-section">
-                <h4>Síguenos</h4>
-                <a href="#">Twitter</a>
-                <a href="#">LinkedIn</a>
-                <a href="#">Newsletter</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -1406,6 +1450,12 @@
         const membersGrid = document.querySelector('.members-grid');
         if (membersGrid) {
             observer.observe(membersGrid);
+        }
+
+        // Observar imagen del Vaticano para fade-in gradual
+        const originImageWrapper = document.querySelector('.origin-image-wrapper');
+        if (originImageWrapper) {
+            observer.observe(originImageWrapper);
         }
 
         // ===========================
