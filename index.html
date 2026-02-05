@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Latinoamericana de IA para el Desarrollo Humano Integral</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiempos+Headline:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a3d2e;
+            --color-secondary: #2d5a45;
+            --color-accent: #cc785c;
+            --color-highlight: #e89b7e;
+            --color-text: #2d2d2d;
+            --color-text-light: #666666;
+            --color-background: #ffffff;
+            --color-background-alt: #fafaf9;
+            --color-border: #e8e8e3;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            color: var(--color-text);
+            line-height: 1.7;
+            background: var(--color-background);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Tiempos Headline', Georgia, serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--color-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--color-accent);
+            font-style: italic;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-highlight);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-highlight);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: var(--spacing-xl) 2rem var(--spacing-lg);
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-highlight));
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: 0.02em;
+        }
+
+        .hero h1 {
+            font-family: 'Tiempos Headline', Georgia, serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.15;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-light);
+            margin-bottom: var(--spacing-lg);
+            max-width: 700px;
+            line-height: 1.6;
+        }
+
+        /* Key Points Section */
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .key-point {
+            background: var(--color-background-alt);
+            padding: var(--spacing-md);
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .key-point:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .key-point-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .key-point-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-highlight));
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .key-point p {
+            color: var(--color-text);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Section */
+        section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-lg) 2rem;
+        }
+
+        .section-header {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-title {
+            font-family: 'Tiempos Headline', Georgia, serif;
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 400;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            max-width: 700px;
+        }
+
+        /* Members Grid */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .member-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+            transition: all 0.3s ease;
+        }
+
+        .member-card:hover {
+            border-color: var(--color-highlight);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .member-placeholder {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Activities */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .activity-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            transition: all 0.3s ease;
+        }
+
+        .activity-card:hover {
+            border-color: var(--color-highlight);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .activity-date {
+            color: var(--color-highlight);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: var(--spacing-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .activity-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .activity-description {
+            color: var(--color-text);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            padding: var(--spacing-xl) 2rem;
+            text-align: center;
+            margin-top: var(--spacing-xl);
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-family: 'Tiempos Headline', Georgia, serif;
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            font-weight: 400;
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-lg);
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-background-alt);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-background-alt);
+            padding: var(--spacing-lg) 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .footer-section h3 {
+            font-size: 1.1rem;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 700;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-highlight);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: var(--spacing-lg) auto 0;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 1.5rem;
+            }
+
+            .hero {
+                padding: var(--spacing-lg) 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: var(--spacing-md) 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Red LAC <span>AI</span></a>
+            <ul class="nav-menu">
+                <li><a href="#sobre">About the Network</a></li>
+                <li><a href="#miembros">Members</a></li>
+                <li><a href="#agenda">2026 Roadmap</a></li>
+                <li><a href="#publicaciones">Knowledge</a></li>
+                <li><a href="#participar">Join</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-tag">Under the Auspices of the Pontifical Academy of Social Sciences</span>
+            <h1>Latin American AI Network for Integral Human Development</h1>
+            <p class="hero-subtitle">
+                Articulating regional knowledge on AI to build an expert and coherent Latin American voice 
+                that influences the global debate and regional strategies with meaningful impact.
+            </p>
+        </div>
+
+        <div class="key-points">
+            <div class="key-point">
+                <h3 class="key-point-title">
+                    <span class="key-point-icon">1</span>
+                    Why a Network
+                </h3>
+                <p>
+                    AI is rapidly redefining the global economy, work and society. Without a coordinating space, 
+                    Latin America risks fragmenting efforts and missing out on the vast potential of AI for regional development. 
+                    The region must offer a local perspective to the global debate on AI for the common good.
+                </p>
+            </div>
+
+            <div class="key-point">
+                <h3 class="key-point-title">
+                    <span class="key-point-icon">2</span>
+                    Our Mission
+                </h3>
+                <p>
+                    To generate meeting and dialogue spaces for the exchange of perspectives and knowledge on AI. 
+                    To articulate the critical mass of research, centers and actors to build and position 
+                    an expert Latin American voice in AI.
+                </p>
+            </div>
+
+            <div class="key-point">
+                <h3 class="key-point-title">
+                    <span class="key-point-icon">3</span>
+                    2026 Roadmap
+                </h3>
+                <p>
+                    Our first year focuses on strategic alliance-building and coordination among institutions 
+                    across Latin America and the Caribbean. Two thematic axes: Human Identity & Trust in AI 
+                    and the Future of Work in the Age of AI.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section id="miembros" class="fade-in-on-scroll">
+        <div class="section-header">
+            <h2 class="section-title">Member Institutions</h2>
+            <p class="section-description">
+                The Network brings together regional leaders and experts with recognized experience in artificial intelligence, 
+                representing institutions working across research, governance, and AI deployment in Latin America and the Caribbean.
+            </p>
+        </div>
+
+        <div class="members-grid">
+            <div class="member-card">
+                <div class="member-placeholder">IALAB<br>University of Buenos Aires</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">Fundar<br>Argentina</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">CENIA<br>Chile</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">Alana Foundation<br>Brazil</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">FGV CTS<br>Brazil</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">ICMC-USP<br>Brazil</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">CELAM<br>LAC</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">CAF<br>Development Bank</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">UNDP<br>LAC</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">UMass Boston<br>United States</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">UCLA<br>United States</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">Columbia University<br>United States</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">Northeastern<br>Civic AI Lab</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">Notre Dame<br>United States</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">Globernance<br>Spain</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">CLAIRE<br>Europe</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">EUI<br>AI & Democracy Chair</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">Partnership on AI<br>International</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">PASS<br>Vatican</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">Berggruen Institute<br>International</div>
+            </div>
+            <div class="member-card">
+                <div class="member-placeholder">NeuroRights Foundation<br>International</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="#miembros" class="btn btn-secondary" style="color: var(--color-primary); border-color: var(--color-primary);">
+                View all institutions →
+            </a>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="agenda" class="fade-in-on-scroll">
+        <div class="section-header">
+            <h2 class="section-title">2026 Roadmap</h2>
+            <p class="section-description">
+                The Network will focus on strategic alliance-building and coordination, organizing virtual 
+                and in-person convenings across Latin America and internationally.
+            </p>
+        </div>
+
+        <div class="activities-grid">
+            <div class="activity-card">
+                <div class="activity-date">Throughout 2026</div>
+                <h3 class="activity-title">Thematic Axis I: Human Identity, Trust and Authenticity</h3>
+                <p class="activity-description">
+                    Reflections on the impact of AI on human identity, social trust, and authenticity 
+                    in increasingly digital environments, with attention to representation, reliability, 
+                    deliberative processes, electoral contexts, and children's environments.
+                </p>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-date">Throughout 2026</div>
+                <h3 class="activity-title">Thematic Axis II: Future of Work in the Age of AI</h3>
+                <p class="activity-description">
+                    Transformations in work associated with AI, including changes in organization of tasks, 
+                    skills and employment, and implications for distributional arrangements and social 
+                    protection mechanisms for a just transition.
+                </p>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-date">October 2026</div>
+                <h3 class="activity-title">In-Person Convening at UMass Boston</h3>
+                <p class="activity-description">
+                    First major in-person gathering hosted by the University of Massachusetts Boston 
+                    in collaboration with the Pontifical Academy of Social Sciences.
+                </p>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-date">November 2026</div>
+                <h3 class="activity-title">Buenos Aires Meeting</h3>
+                <p class="activity-description">
+                    Second in-person convening to be held in Buenos Aires, hosted by the 
+                    Argentine Society of Artificial Intelligence.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publicaciones" class="fade-in-on-scroll">
+        <div class="section-header">
+            <h2 class="section-title">Knowledge Production</h2>
+            <p class="section-description">
+                The Network connects and harmonizes existing work by centers and experts, 
+                building a shared regional voice to shape global debates and influence strategies.
+            </p>
+        </div>
+
+        <div class="activities-grid">
+            <div class="activity-card">
+                <div class="activity-date">Network Document</div>
+                <h3 class="activity-title">Latin American Perspective on AI for the Common Good</h3>
+                <p class="activity-description">
+                    Drawing on the region's tradition of peace and dialogue, articulating 
+                    a local perspective that bridges regional solutions with global agendas.
+                </p>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-date">Background</div>
+                <h3 class="activity-title">Digital Rerum Novarum: Launch at Vatican City</h3>
+                <p class="activity-description">
+                    The Network was launched in October 2025 during the seminar on 
+                    "AI for Peace, Social Justice and Integral Human Development" 
+                    organized by PASS and University of Notre Dame.
+                </p>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-date">Member Productions</div>
+                <h3 class="activity-title">Research from Network Institutions</h3>
+                <p class="activity-description">
+                    Curated collection of publications and initiatives from member institutions 
+                    working on AI across Latin America and the Caribbean.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="participar">
+        <div class="cta-content">
+            <h2 class="cta-title">Join the Network</h2>
+            <p class="cta-description">
+                We are building the most important AI community for integral human development 
+                in Latin America and the Caribbean. Your institution or expertise can be part of this movement.
+            </p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">Apply as Institution</a>
+                <a href="#" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Red LAC AI</h3>
+                <p>
+                    Latin American AI Network for Integral Human Development
+                </p>
+                <p style="margin-top: 1rem;">
+                    Under the auspices of the Pontifical Academy of Social Sciences
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Navigation</h3>
+                <p><a href="#sobre">About the Network</a></p>
+                <p><a href="#miembros">Members</a></p>
+                <p><a href="#agenda">2026 Roadmap</a></p>
+                <p><a href="#publicaciones">Knowledge</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><a href="mailto:contact@redlacai.org">contact@redlacai.org</a></p>
+                <p><a href="#participar">Join the Network</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p><a href="#">Twitter</a></p>
+                <p><a href="#">LinkedIn</a></p>
+                <p><a href="#">Newsletter</a></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Latin American AI Network for Integral Human Development. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
